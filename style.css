@@ -1,0 +1,122 @@
+* {
+	box-sizing: border-box;
+}
+
+html, body {
+	height: 100%;
+}
+
+body {
+	margin: -20px auto 0px auto;
+	width: 75%;
+	background-color: #f9f6ef;
+	overflow: hidden;
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+
+#header {
+	background-image:url("https://cdn-images-1.medium.com/max/2000/1*5vS__Tatf2vgfVw4lQiPdg.jpeg");
+	background-repeat: no-repeat, repeat;
+	height: 240px;
+	border-bottom: solid 1px darkgray;
+	margin: 0 0 15px 0;
+	color: #fff1f1;
+	text-shadow: 1px 1px 1px darkgray;
+	/*padding: 100px 75px;*/
+	font-size: 3em;
+	background-size: cover;
+}
+
+#header h2 {
+	padding: 100px 40px;
+	text-align: center;
+}
+
+#maincontainer {
+	overflow:hidden;
+	padding-bottom: 15px;
+}
+
+.areaone {
+	float:left;
+}
+
+.areatwo {
+  float:left;
+}
+
+#footer {
+	height: 80px ;
+	font-size: .8em;
+	color: #a5987a;
+	overflow:hidden;
+	clear: both;
+}
+
+#myInfo {
+	padding-left: 0px;
+	float: right;
+}
+
+/* Sizing */
+
+.col-1 {
+  padding: 5px 10px;
+	width:8.33%;
+  margin: 0px;
+  }
+.col-2 {
+  padding: 5px 10px;
+	width:16.66%;
+  margin: 0px;
+  }
+.col-3 {
+  padding: 5px 10px;
+	width:25%;
+  margin: 0px;
+  }
+.col-4 {
+  padding: 5px 10px;
+	width:33.33%;
+  margin: 0px;
+  }
+.col-5 {
+  padding: 5px 10px;
+	width:41.66%;
+  margin: 0px;
+  }
+.col-6 {
+  padding: 5px 10px;
+	width:50%;
+  margin: 0px;
+  }
+.col-7 {
+  padding: 5px 10px;
+	width:58.33%;
+  margin: 0px;
+  }
+.col-8 {
+  padding: 5px 10px;
+	width:66.66%;
+  margin: 0px;
+  }
+.col-9 {
+  padding: 5px 10px;
+	width:75%;
+  margin: 0px;
+  }
+.col-10 {
+  padding: 5px 10px;
+	width:83.33%;
+  margin: 0px;
+  }
+.col-11 {
+  padding: 5px 10px;
+	width:91.66%;
+  margin: 0px;
+  }
+.col-12 {
+  padding: 5px 10px;
+	width:100%;
+  margin: 0px;
+  }

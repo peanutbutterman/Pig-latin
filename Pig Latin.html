@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pig Latin Translator</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="header" class="col-12">
+</div>
+<div id="maincontainer">
+	<h2> Pig Latin Translator</h2>
+	<hr>
+	<div class="col-6 areaone" >
+			<form action="action_page.php">
+				<textarea name="message" id="Area1" style="width:100%; height: 150px; overflow: auto;" placeholder="Text here will be translated to Pig Latin.."></textarea>
+			</form>
+	</div>
+	<div class="col-6 areatwo">
+		<form>
+				<textarea id="Area2" style="width:100%; height: 150px; overflow: auto;" ></textarea>
+			</br>
+				<button type="button" onclick="translateButton();" >Translate</button>
+		</form>
+	</div>
+</div>
+<hr>
+<div id="footer">
+	<div id="myInfo" class="col-4">
+		<span>Made by Jesse Molitor<br>
+		jessemolitor@yahoo.com<br>
+		360-265-0319<br>
+		<a href="#">Click for more projects by Jesse Molitor</a>
+	</span>
+	</div>
+</div>
+<script type="text/javascript"> 
+
+
+var SplitUp;
+var vowel = ["a","e","i","o","u"];
+var consonant = ["b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z"];
+var punctuation = [".","!","?"];
+var translation = [];
+var finalText = [];
+var cut;
+function translateButton() {
+
+	translator();
+	function translator() {
+		var a = document.getElementById('Area1').value; 
+	 	a = a.toLowerCase(); //all entries to lower case
+	 	b = a.replace(/['\/#$%\^&\*;:{}=\-_`~()]/g, ""); // replaces special chars
+	 	b = b.replace(/[0-9]/g, "");  // replaces any numbers
+	// 	console.log("this is b: " + b);
+
+	 	splitUp = b.split(" ");  //splits up words into array
+
+			checkSpace(splitUp);
+			consonantAy(splitUp);
+			doubleConsonate(splitUp); //add Splitup as an argument
+			startsVowel(splitUp);
+			puncPlacement(translation);
+			firstCapitalize(translation);
+
+			function checkSpace(theSent) {
+				for (var i = 0; i < theSent.length; i++) {
+					//console.log("the word being checked: " + theSent[i]);
+						//for (var j = 0; j < theSent[i].length; j++) {
+   					 if (theSent[i] == "") {
+   					 //	console.log(theSent);
+   					 	theSent.splice(i,1);
+   					 	i--;
+   					 	//console.log(theSent);
+						}
+					}
+					//console.log("checkspace: " + splitUp);
+				}
+
+			function puncPlacement(splitUp) {
+				for (var i = 0; i < splitUp.length; i++) {
+					for (var j = 0; j < splitUp[i].length; j++) {
+						for (var k = 0; k < punctuation.length; k++) {
+							if (splitUp[i][j] == punctuation[k]) {
+								var spot = splitUp[i].indexOf(punctuation[k]);
+								cut = splitUp[i].substr(spot,1);
+								splitUp[i] = splitUp[i].slice(0,spot) + splitUp[i].slice(spot+1) + cut;
+								//console.log(splitUp[i]);
+							}
+						}
+					}
+				}
+				//console.log("puncplacement: " + splitUp);
+			}
+			function consonantAy(theSent) {
+				var consonantCount;
+				for (var i = 0; i < theSent.length; i++) {
+					for (var j = 0; j < consonant.length; j++) {
+					  if (theSent[i].slice(0,1) === consonant[j]) {
+					    //console.log(theSent[i]);
+					    //console.log("1st letter being checked is:  " + theSent[i].slice(0,1));
+					 	} 
+					 }
+					 	for (var k = 0; k < vowel.length; k++) {
+					 		if (theSent[i].slice(1,2) === vowel[k]) {
+					  		 consonantCount = true;
+					  		 //console.log("2nd letter being checked	 is:  " + theSent[i].slice(1,2));
+					 			}
+					 		if (consonantCount === true) {
+					 					translation[i] = theSent[i].slice(1) + theSent[i].slice(0,1) + "ay";
+					 					consonantCount = false;		
+				  		}
+				  	}
+				 	}	
+				 	//console.log("consonantAy: " + splitUp);
+				}
+
+			function doubleConsonate(theSent) { // add the sent as a parameter
+			  //console.log("the word or phrase: " + theSent);
+			  var consonantCount;
+			  for (var i = 0; i < theSent.length; i++) {
+			    if (consonant.indexOf(theSent[i][0]) != -1) {
+			      //console.log(theSent[i]);
+			      //console.log("The 1st letter being checked is: " + theSent[i][0]);
+			    if (consonant.indexOf(theSent[i][1]) != -1) {
+			      //console.log("The 2nd letter being checked is: " + theSent[i][1]);
+			      translation[i] = theSent[i].slice(2) + theSent[i].slice(0,2) + "ay";
+			   		 }
+			    	}
+			  	}
+			  //console.log("doubleConsonant: " + theSent);
+				}
+
+			function startsVowel(theSent) {
+				var vowelWords = [];
+				for (var i = 0; i < theSent.length; i++) {
+					if (vowel.indexOf(theSent[i][0]) != -1) {
+						//console.log("I found a vowel: " + theSent[i].slice(0,1));
+						translation[i] = theSent[i] + "way";
+							}
+						}
+						//console.log("StartsVowel: "+ translation);
+				}
+
+
+			function firstCapitalize(splitUp) { //ughaahaahahaahaaaAAAHAHAHAHAAH SCREAM!!! this works only for one
+					console.log("text before: " + splitUp);
+					for (var iii = 0; iii < splitUp.length; iii++) {
+						for (var j = 0; j < splitUp[iii].length; j++) { //broken somewhere in here
+							if (punctuation.indexOf(splitUp[iii][j]) != -1 && (splitUp[iii+1] != null)) {
+								console.log("word " + splitUp[iii]);
+								console.log(splitUp[iii][j]);
+								iii++;
+								console.log("after the increment: " + splitUp[iii]);
+								var why = splitUp[iii][0].toUpperCase() + splitUp[iii].slice(1);
+								splitUp[iii] = why;
+								console.log(splitUp);
+								iii--;
+								//break;
+							}
+						}
+						}
+					if (splitUp[0] != undefined) {
+						splitUp[0] = splitUp[0][0].toUpperCase() + splitUp[0].slice(1);
+						console.log(splitUp[0][0]);
+					}
+					translation = splitUp;
+					}
+
+
+
+				} // translator func
+				var firstSpot = document.getElementById("Area1");
+				var secondSpot = document.getElementById("Area2");
+				var finalText = String(translation);
+				finalText = finalText.replace(/,/g, " ");
+				secondSpot.innerHTML = finalText;
+				firstSpot.onblur = makeBlank(); //the first box loses focus, the translation array becomes empty
+
+				function makeBlank() {
+					translation= [];
+				}
+			
+	
+
+			} //translateButton func
+
+</script>
+</body>
+</html>
+
+
+<!--To do list
+
+-located punctuation.
+-learn how to add a little image marker on title  
+-add media responsiveness
+
+ **** finished ****
+*css (make it look nice)
+-have html load before javascript
+-have empty string be spliced from array
+-add rules for pig latin
+-dont translate on empty code. numbers replaced become nothing and "ay" is added. remove this
+-if empty dont display "ay"
+-output tranlated text to second field
+-get info form text area into a variable
+
+-->
